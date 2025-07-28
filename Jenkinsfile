@@ -18,7 +18,7 @@ pipeline{
                 sh "mvn clean install"
             }
         }
-
+/*
         stage('2CodeQuality'){
             steps{
                 sh "echo 'Running code quality analysis'"
@@ -34,8 +34,9 @@ pipeline{
         stage('5DeploymentToUat'){
             steps{
                 sh "echo 'Deployment to Tomcat'"
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://52.207.216.26:8080/')], contextPath: null, war: 'target/*war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://44.201.165.175:8080/')], contextPath: null, war: 'target/*war'
             }
         }
     }
+    */
 }
