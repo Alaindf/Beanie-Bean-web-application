@@ -14,9 +14,11 @@
     stage('4UploadArtifacts'){
         sh "${mavenHome}/bin/mvn deploy"
     }
+    /*
     stage('5DeploymentUat'){
         deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat', path: '', url: 'http://44.201.165.175:8080/')], contextPath: null, war: 'target/*war'
     }
+    */
     stage('6DeploymentProd'){}
 
     stage('6Approval'){
@@ -25,12 +27,14 @@
         }
     }
     stage('7DeploymentToProd'){
-        deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat', path: '', url: 'http://13.221.184.186:8080/')], contextPath: null, war: 'target/*war'
+        deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://44.202.72.25:8080/')], contextPath: null, war: 'target/*war'
     }
+    /*
     stage('8Notifications'){
         emailext body: '''This would be the final status report on pipeline builds.
 
 Regards
 ''', subject: 'Pipeline Status', to: 'nfestatech@mail.com'
     }
+    */
 }
