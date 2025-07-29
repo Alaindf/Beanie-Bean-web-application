@@ -15,7 +15,7 @@
         sh "${mavenHome}/bin/mvn deploy"
     }
     stage('5DeploymentUat'){
-        deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat_credentials', path: '', url: 'http://13.221.184.186:8080/')], contextPath: null, war: 'target/*war'
+        deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat_credentials', path: '', url: 'http://44.201.165.175:8080/')], contextPath: null, war: 'target/*war'
     }
     stage('6DeploymentProd'){}
 
@@ -25,7 +25,7 @@
         }
     }
     stage('7DeploymentToProd'){
-        deploy adapters: [tomcat9(credentialsId: 'jenkins-tomcat-credentials', path: '', url: 'http://44.197.229.164:8080/')], contextPath: null, war: 'target/*war'
+        deploy adapters: [tomcat9(credentialsId: 'jenkins-tomcat-credentials', path: '', url: 'http:/13.221.184.186:8080/')], contextPath: null, war: 'target/*war'
     }
     stage('8Notifications'){
         emailext body: '''This would be the final status report on pipeline builds.
