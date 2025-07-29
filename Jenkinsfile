@@ -7,7 +7,7 @@
     }
     stage('2Test&Build'){
         sh "${mavenHome}/bin/mvn clean install"
-   }
+    }
     stage('3CodeQuality'){
         sh "${mavenHome}/bin/mvn sonar:sonar"
     }
@@ -16,7 +16,7 @@
     }
     stage('5DeploymentUat'){
         deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat', path: '', url: 'http://44.201.165.175:8080/')], contextPath: null, war: 'target/*war'
-   }
+    }
     stage('6DeploymentProd'){}
 
   stage('6Approval'){
