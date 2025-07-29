@@ -16,12 +16,13 @@
 	We offer Training for DevOps with Linux and Cloud equipping IT Engineers for best performance.</h1>
 	      <h2>We are Developing and supporting toyota mobile application.</h2>
               <h2>We have completed Toyota E2E containerized Project. We hope you can now conplete a self coached HandsOn</h2>
+              <h2>Running this from bug-fix< branch/h2>
 	<h4>
 		You are watching this from our end-to-end Jenkins deployment into our toyota application servers.
 		  ---We just tested our pipeline----Hope you enjoy your stay in here.----
                    -- you are watching this from our Tomcat web app containers--
 	</h4>
-<h>Running this from bug-fix< branch/h2>
+
 <hr>
 <br>
 	<h1><h3> Server Side IP Address </h3><br>
