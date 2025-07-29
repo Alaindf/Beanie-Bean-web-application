@@ -19,7 +19,7 @@
     }
     stage('6DeploymentProd'){}
 
-  stage('6Approval'){
+    stage('6Approval'){
         timeout(time:11, unit:'HOURS'){
             input message: 'Application is now ready for deployment to production. Please, review and provide your Approval'
         }
