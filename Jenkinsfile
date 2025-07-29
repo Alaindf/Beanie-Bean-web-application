@@ -1,23 +1,23 @@
   node{
     def mavenHome = tool name: 'maven3.9.8'
     stage('1CloneCode'){
-        git branch: 'main', url: 'https://github.com/Alaindf/Beanie-Bean-web-application.git'
+        git branch: 'bug-fix', url: 'https://github.com/Alaindf/Beanie-Bean-web-application.git'
         //sh "https://github.com/nfestaclass04/maven-web-application.git"
         //bat "https://github.com/nfestaclass04/maven-web-application.git"
     }
-    //stage('2Test&Build'){
-      //  sh "${mavenHome}/bin/mvn clean install"
-    //}
-    //stage('3CodeQuality'){
-      //  sh "${mavenHome}/bin/mvn sonar:sonar"
-    //}
-    //stage('4UploadArtifacts'){
-     //   sh "${mavenHome}/bin/mvn deploy"
-    //}
-   // stage('5DeploymentUat'){
-     //   deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat_credentials', path: '', url: 'http://44.203.153.212:8080/')], contextPath: null, war: 'target/*war'
-    //}
-    //stage('6DeploymentProd'){}
+    stage('2Test&Build'){
+        sh "${mavenHome}/bin/mvn clean install"
+    }
+    stage('3CodeQuality'){
+        sh "${mavenHome}/bin/mvn sonar:sonar"
+    }
+    stage('4UploadArtifacts'){
+        sh "${mavenHome}/bin/mvn deploy"
+    }
+    stage('5DeploymentUat'){
+        deploy adapters: [tomcat9(credentialsId: 'jenkins_tomcat_credentials', path: '', url: 'http://13.221.184.186:8080/')], contextPath: null, war: 'target/*war'
+    }
+    stage('6DeploymentProd'){}
 
   stage('6Approval'){
         timeout(time:11, unit:'HOURS'){
