@@ -18,7 +18,6 @@ pipeline{
                 sh "mvn clean install"
             }
         }
-        /*
         stage('2CodeQuality'){
             steps{
                 sh "echo 'Running code quality analysis'"
@@ -38,5 +37,4 @@ pipeline{
             }
         }
     }
-    */
 }
