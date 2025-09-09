@@ -1,8 +1,10 @@
 
 pipeline{
-    agent { label 'Agent1' } 
+    //agent { label 'Agent1' } 
+    agen  any 
     tools{
         maven "maven3.9.8"
+        sonarqubeScanner "sanar7.2.0.5079"
     }
     stages{
         stage('1CodeClone'){
@@ -11,6 +13,7 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/Alaindf/Beanie-Bean-web-application.git'
             }
         }
+    
         stage('3Test&Build'){
             steps{
                 sh "echo 'Maven should be able to do a build now'"
@@ -29,10 +32,17 @@ pipeline{
                 sh "mvn deploy"
             }
         }
+         stage('Approval'){
+            steps{
+                timeout(time:9, unit: 'HOURS'){
+                    input message: 'Please. review/verify the smooth running of app and provide your approval'
+                }
+            }
+        }
         stage('5DeploymentToUat'){
             steps{
                 sh "echo 'Deployment to Tomcat'"
-                deploy adapters: [tomcat9(credentialsId: 'tomcat', path: '', url: 'http://13.221.108.1:8080/')], contextPath: null, war: 'target/*war'
+                deploy adapters: [tomcat9(credentialsId: 'tomcat2', path: '', url: 'http://44.202.72.25:8080/')], contextPath: null, war: 'target/*war'
             }
         }
     }
