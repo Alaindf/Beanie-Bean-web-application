@@ -1,8 +1,10 @@
 
 pipeline{
-    agent { label 'Agent1' } 
+    //agent { label 'Agent1' } 
+    agen  any 
     tools{
         maven "maven3.9.8"
+        sonarqubeScanner "sanar7.2.0.5079"
     }
     stages{
         stage('1CodeClone'){
@@ -28,6 +30,13 @@ pipeline{
             steps{
                 sh "echo 'pushing Artifacts to remote repository'"
                 sh "mvn deploy"
+            }
+        }
+         stage('Approval'){
+            steps{
+                timeout(time:9, unit: 'HOURS'){
+                    input message: 'Please. review/verify the smooth running of app and provide your approval'
+                }
             }
         }
         stage('5DeploymentToUat'){
