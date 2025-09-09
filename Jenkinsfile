@@ -1,10 +1,9 @@
 
 pipeline{
-    //agent { label 'Agent1' } 
-    agen  any 
+    agent { label 'Agent1' } 
+    
     tools{
         maven "maven3.9.8"
-        sonarqubeScanner "sanar7.2.0.5079"
     }
     stages{
         stage('1CodeClone'){
