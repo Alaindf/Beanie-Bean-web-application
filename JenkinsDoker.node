@@ -21,7 +21,12 @@ node{
         sh "docker build -t ngouabounina/new-app:v0 ."
    }
    stage('7DockerPush'){
-        sh "docker push ngouabounina/new-app:v0"
+   withCredentials([usernamePassword(credentialsId: 'jenkins-docker1', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+     sh '''
+    echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+    docker push ngouabounina/docker-jenkins:v0
+     '''
+   }
    }
     stage('8RunContainer'){
         sh "docker run --name my-app -d -p 9000:8080 ngouabounina/new-app:v0"
